@@ -69,6 +69,7 @@ $(document).ready(function () {
     console.log("mouseover");
     ele = $(this).data("affichage");
     idSmiley = $(this).data("id");
+    ElemeAsupp = $(this);
     jCroix.insertAfter($(this));
   });
 
@@ -77,6 +78,7 @@ $(document).ready(function () {
     console.log("click");
     //recup l'id de la table
     console.log("Affichage récupéré : ", ele);
+    ElemeAsupp.hide();
     chaineSupp = ele.join(",");
     console.log("chaineSupp", chaineSupp);
     $.ajax({
@@ -85,6 +87,8 @@ $(document).ready(function () {
       data: { affichage: chaineSupp }, // Envoyer les couleurs sous forme de paramètre
       success: function (response) {
         console.log("Smiley supprimé en base de données !");
+
+        // elementASupprimer.remove();
 
         // Gérer la réponse du serveur si nécessaire
       },
@@ -114,6 +118,18 @@ $(document).ready(function () {
       console.log(chaineDup);
       $("#formChaine").submit();
       tableauClique = false; // Réinitialisez la variable pour la prochaine fois
+      $.ajax({
+        type: "POST",
+        url: "templates/modifier_couleurs.php", // URL du script PHP pour la mise à jour en base de données
+        data: { dup: chaineDup }, // Envoyer les couleurs sous forme de paramètre
+        success: function (response) {
+          console.log("Smiley dupliqué sur l'acceuil !");
+          //on change de view ete on va sur acceuil
+          window.location.href = "index.php";
+
+          // Gérer la réponse du serveur si nécessaire
+        },
+      });
     }
   });
 });

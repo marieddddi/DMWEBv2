@@ -21,6 +21,24 @@ $grille = '<table id="grille">
 </table>';
 
 // Vérification si le formulaire a été soumis
+if (isset($_SESSION['couleurs'])) {
+	$couleurs = $_SESSION['couleurs'];
+	$affichage = conversion_chaine($couleurs);
+	$nbCases = $affichage[0];
+
+	$grille = '<table id="grille">';
+	for ($i = 0; $i < $nbCases; $i++) {
+		$grille .= '<tr>';
+		for ($j = 0; $j < $nbCases; $j++) {
+			$grille .= '<td style="background-color:' . $affichage[$i * $nbCases + $j + 1] . '
+			 ;"></td>';
+		}
+		$grille .= '</tr>';
+	}
+	$grille .= '</table>';
+	$_SESSION['couleurs'] = null;
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['nbCases'])) {
 	$nbCases = intval($_POST['nbCases']);
 

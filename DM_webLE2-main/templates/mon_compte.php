@@ -97,7 +97,7 @@ if (basename($_SERVER["PHP_SELF"]) != "index.php") {
 			<div class="coulcoul" style="background-color: #20b2aa;"></div>
 			<div class="coulcoul" style="background-color: #4682b4;"></div>
 			<div class="coulcoul" style="background-color: #d3d3d3;"></div>
-
+			<input type="file" id="uploadImage" accept="image/*">
 		</div>
 
 

@@ -59,8 +59,15 @@ if (isset($_GET["affichage"])) {
     $idUser = $_SESSION['idUser'];
     echo "User ID: " . $idUser;
 
+
     // Appel à une fonction pour mettre à jour les couleurs en base de données
     supprimer_smiley($idUser, $chaine);
+}
+
+if (isset($_POST["dup"])) {
+    $chaineDup = $_POST["dup"];
+    $_SESSION['couleurs'] = $chaineDup;
+
 }
 
 
